@@ -1,0 +1,21 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+	clrscr();
+	short a;
+	unsigned int c;
+	cout<<"Enter a number between 0 to 8"<<endl;
+	cin>>a;
+	asm mov ax,0000h
+	asm mov al,01h
+	asm mov cx,0000h
+	asm mov cx,a
+	back:
+		asm mul cx
+		asm dec cx
+		asm jnz back
+		asm mov c,ax
+	cout<<endl<<"The factorial of A is "<<a;
+	getch();
+}

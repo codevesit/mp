@@ -1,0 +1,19 @@
+data segment    
+a dw 0FEh
+b dw 05h
+quo dw ?
+rem dw ?
+data ends
+code segment
+start:
+assume cs:code,ds:data
+mov ax,data
+mov ds,ax
+mov ax,a
+mov bx,b
+div bx
+mov quo,ax
+mov rem,dx
+int 03h
+end start
+code ends

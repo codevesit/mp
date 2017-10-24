@@ -1,0 +1,35 @@
+DATA SEGMENT
+        A DB 12H,14H,03,69H,42H,22H,19H,20H,24H,04H
+        SIZ DB 0AH
+        OUTPUT DB ?
+        SML DB ?
+DATA ENDS
+CODE SEGMENT
+        ASSUME CS:CODE,DS:DATA
+        START:
+        MOV AX,DATA
+        MOV DS,AX
+        LEA SI,A
+        LEA DI,SML
+        MOV CL,SIZ
+        CALL SMALLEST
+        JMP FINISH
+        SMALLEST PROC NEAR
+        MOV AL,[SI]
+        UP:
+                DEC CL
+                JZ FNS
+                INC SI
+                MOV BL,[SI]
+                CMP AL,BL
+                JNG UP
+                MOV AL,[SI]        
+                JMP UP
+        FNS:
+                MOV [DI],AL
+                RET
+                SMALLEST ENDP
+        FINISH:
+        INT 03H
+        CODE ENDS
+        END START

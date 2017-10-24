@@ -1,0 +1,20 @@
+DATA SEGMENT
+        A DW 12C1H
+        B DW 1999H
+        RES DW ?
+        RES1 DW ?
+DATA ENDS
+
+CODE SEGMENT
+        ASSUME CS:CODE,DS:DATA
+        START:
+        MOV AX,DATA
+        MOV DS,AX
+        MOV AX,A
+        MOV BX,B
+        MUL BX
+        MOV RES,AX
+        MOV RES1,DX
+        INT 03H
+        CODE ENDS
+        END START

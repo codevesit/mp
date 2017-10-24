@@ -1,0 +1,18 @@
+DATA SEGMENT
+        A DB 03H;
+        B DB 02H;
+        RES DB ?
+DATA ENDS
+
+CODE SEGMENT
+        START:
+        ASSUME CS:CODE,DS:DATA
+        MOV AX,DATA
+        MOV DS,AX
+        MOV AL,A
+        MOV BL,B
+        ADD AL,BL
+        MOV RES,AL
+        INT 03H
+        END START
+CODE ENDS
